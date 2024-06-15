@@ -99,7 +99,7 @@ export class UsersService {
           'user.isActive',
         ])
         .getOne();
-      this.logger.log(findUserByEmail);
+      this.logger.log(JSON.stringify(findUserByEmail));
       return findUserByEmail;
     } catch (error) {
       this.logger.error(error);

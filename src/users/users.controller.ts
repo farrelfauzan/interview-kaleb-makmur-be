@@ -20,8 +20,6 @@ import { JwtGuard } from 'src/auth/guards/jwt.guard';
 import { User } from './entities/user.entity';
 import { UpdateUserDto } from './dto/update-user.dto';
 
-@UseGuards(JwtGuard)
-@ApiBearerAuth()
 @ApiTags('Users')
 @Controller('users')
 export class UsersController {
@@ -34,23 +32,31 @@ export class UsersController {
   }
 
   @ApiCreatedResponse({ type: User, isArray: true })
+  @UseGuards(JwtGuard)
+  @ApiBearerAuth()
   @Get()
   async findAll() {
     return await this.usersService.findAll();
   }
 
   @ApiCreatedResponse({ type: User })
+  @UseGuards(JwtGuard)
+  @ApiBearerAuth()
   @Get(':email')
   async findUserByEmail(@Param('email') email: string) {
     return await this.usersService.findUserByEmail(email);
   }
 
   @Delete(':id')
+  @UseGuards(JwtGuard)
+  @ApiBearerAuth()
   async remove(@Param('id') id: string) {
     return await this.usersService.remove(id);
   }
 
   @ApiBody({ type: UpdateUserDto })
+  @UseGuards(JwtGuard)
+  @ApiBearerAuth()
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return await this.usersService.update(id.toString(), updateUserDto);
