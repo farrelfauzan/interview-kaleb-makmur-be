@@ -95,6 +95,7 @@ export class UsersService {
           'user.firstName',
           'user.password',
           'user.lastName',
+          'user.username',
           'user.email',
           'user.isActive',
         ])
