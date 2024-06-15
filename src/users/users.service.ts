@@ -93,6 +93,7 @@ export class UsersService {
         .select([
           'user.id',
           'user.firstName',
+          'user.password',
           'user.lastName',
           'user.email',
           'user.isActive',

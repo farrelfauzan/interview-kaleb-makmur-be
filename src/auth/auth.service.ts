@@ -52,6 +52,7 @@ export class AuthService {
   ): Promise<User | undefined> {
     try {
       const user = await this.userService.findUserByEmail(email);
+      console.log(user);
       if (user) {
         const isMatch = await comparePassword(password, user.password);
         if (isMatch) {
@@ -62,6 +63,7 @@ export class AuthService {
       }
       return undefined; // Return undefined if user not found
     } catch (error) {
+      console.log(error);
       this.logger.error(error);
       return undefined; // Return undefined in case of error
     }
